@@ -21,7 +21,7 @@ try {
             foreach ($property in $translationJSONContent.PSObject.Properties) {
                 $key = $property.Name
                 $value = $property.Value
-                $replace = "{$key}"
+                $replace = $key
                 if ($key.Contains("Olist")) {
                     $replacelink = "{"+$key+"-link}"
                     $valuelink = "#"+$value.Replace(" ","-").ToLower()  

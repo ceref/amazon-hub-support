@@ -1,4 +1,7 @@
 param($trainingName)
+if ($null -eq $trainingName) {
+    $trainingName = "in-store"
+}
 $basepath = $PSScriptRoot + "\"  
 $xlsxfile = $basePath + "csvContent.xlsx"
 
@@ -7,11 +10,11 @@ if ((Test-Path $xlsxfile) -eq $true) {
     $workbook = $objExcel.Workbooks.Open($xlsxfile)
     $workbook.refreshall()
                   
-    Start-Sleep -s 10
+    Start-Sleep -s 5
     $sheet = $WorkBook.sheets.item("material")
 
     $totalNoOfRecords = ($sheet.UsedRange.Rows).count 
-    $col = 0
+    $col = 1
     while ($null -ne $sheet.Cells.Item(1, $col).value2) {
         if ($col -gt 0) {
             $jsonBase = @{}
